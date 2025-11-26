@@ -46,7 +46,7 @@ section {
     scroll-snap-stop: always;
 }
 
-.reel img {
+.reel video {
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -108,16 +108,34 @@ section {
     background: linear-gradient(to right, transparent, #00000065);
 }
 
+.right .right-elements {
+    width: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
 .right .right-elements .icons {
     font-size: 1.6rem;
     color: #fff;
     font-weight: 500;
-    cursor: pointer;
 }
 
 .right-elements h6 {
     color: #fff;
     font-size: 1.1rem;
     font-weight: 500;
-    text-align: center;
+}
+
+.right .right-elements h4{
+    pointer-events: none;
+}
+.right .right-elements h6{
+    pointer-events: none;
+}
+
+.love {
+    color: red;
 }

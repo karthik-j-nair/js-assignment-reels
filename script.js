@@ -1,20 +1,20 @@
 const reels = [
   {
     creatorName: "Aarav Sharma",
-    profilePic: "https://example.com/pfp1.jpg",
-    video: "",
+    profilePic: "https://images.pexels.com/photos/28583939/pexels-photo-28583939.jpeg",
+    video: "./videos/bike-edit.mp4",
     isLiked: false,
     likeCount: 1200,
     commentCount: 340,
     caption: "Chasing good vibes ✨",
     shareCount: 80,
-    isFollowing: true
+    isFollowing: false
   },
   {
     creatorName: "Riya Mehta",
-    profilePic: "https://example.com/pfp2.jpg",
-    video: "",
-    isLiked: true,
+    profilePic: "https://images.pexels.com/photos/1759531/pexels-photo-1759531.jpeg",
+    video: "./videos/bmw-bike-edit.mp4",
+    isLiked: false,
     likeCount: 5400,
     commentCount: 620,
     caption: "Weekend mood 🔥",
@@ -23,8 +23,8 @@ const reels = [
   },
   {
     creatorName: "Krish Patel",
-    profilePic: "https://example.com/pfp3.jpg",
-    video: "",
+    profilePic: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg",
+    video: "./videos/ktm-edit.mp4",
     isLiked: false,
     likeCount: 890,
     commentCount: 120,
@@ -34,19 +34,19 @@ const reels = [
   },
   {
     creatorName: "Sneha Kapoor",
-    profilePic: "https://example.com/pfp4.jpg",
-    video: "",
-    isLiked: true,
+    profilePic: "https://images.pexels.com/photos/1819483/pexels-photo-1819483.jpeg",
+    video: "./videos/levi-edit.mp4",
+    isLiked: false,
     likeCount: 3200,
     commentCount: 410,
     caption: "Fitness grind 💪",
     shareCount: 110,
-    isFollowing: true
+    isFollowing: false
   },
   {
     creatorName: "Rohan Verma",
-    profilePic: "https://example.com/pfp5.jpg",
-    video: "",
+    profilePic: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+    video: "./videos/obanai-edit.mp4",
     isLiked: false,
     likeCount: 150,
     commentCount: 30,
@@ -56,13 +56,71 @@ const reels = [
   },
   {
     creatorName: "Ananya Singh",
-    profilePic: "https://example.com/pfp6.jpg",
-    video: "",
+    profilePic: "https://images.pexels.com/photos/6626903/pexels-photo-6626903.jpeg",
+    video: "./videos/bmw-car-edit.mp4",
     isLiked: false,
     likeCount: 2100,
     commentCount: 500,
     caption: "Sunset lover 🌅",
     shareCount: 95,
-    isFollowing: true
+    isFollowing: false
   }
 ];
+
+let allReels = document.querySelector(".reels-all");
+
+function addData() {
+  let sum = '';
+  reels.forEach((objs, idx) => {
+    sum = sum + `<div class="reel">
+                    <video autoplay muted loop src="${objs.video}"></video>
+                    <div class="bottom">
+                        <div class="creator">
+                            <img class="user-img"
+                                src="${objs.profilePic}" alt="">
+                            <h4>Karthik.j.nair</h4>
+                            <button>${objs.isFollowing ? "Following" : "Follow"}</button>
+                        </div>
+                        <h6>${objs.caption}</h6>
+                    </div>
+
+                    <div class="right">
+                        <div id="${idx}" class="like right-elements">
+                            <h4 class="like-icon icons">${objs.isLiked?'<i class="love ri-thumb-up-fill"></i>':'<i class="ri-thumb-up-line"></i>'}</h4>
+                            <h6>${objs.likeCount}</h6>
+                        </div>
+                        <div class="comment right-elements">
+                            <h4 class="comment-icon icons"><i class="ri-message-2-line"></i></h4>
+                            <h6>${objs.commentCount}</h6>
+                        </div>
+                        <div class="share right-elements">
+                            <h4 class="share-icon icons"><i class="ri-share-forward-line"></i></h4>
+                            <h6>${objs.shareCount}</h6>
+                        </div>
+                        <div class="menu right-elements">
+                            <h4 class="menu-icon icons"><i class="ri-more-2-line"></i></h4>
+                        </div>
+                    </div>
+                </div>`;
+  });
+
+  
+
+  allReels.innerHTML = sum;
+}
+
+addData();
+
+allReels.addEventListener("click", (evt)=>{
+
+  if (!reels[evt.target.id].isLiked) {
+    reels[evt.target.id].likeCount++;
+    reels[evt.target.id].isLiked = true;
+  } else {
+    reels[evt.target.id].likeCount--;
+    reels[evt.target.id].isLiked = false;
+  }
+  
+  addData();
+  
+});
